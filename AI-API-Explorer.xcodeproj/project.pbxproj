@@ -15,6 +15,7 @@
 		210E668929CDEB42005219F1 /* AI_API_ExplorerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210E668829CDEB42005219F1 /* AI_API_ExplorerUITests.swift */; };
 		210E668B29CDEB42005219F1 /* AI_API_ExplorerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210E668A29CDEB42005219F1 /* AI_API_ExplorerUITestsLaunchTests.swift */; };
 		210E669829CDEFE3005219F1 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210E669729CDEFE3005219F1 /* DetailView.swift */; };
+		210E669A29CE2660005219F1 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210E669929CE2660005219F1 /* NetworkManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 		210E668829CDEB42005219F1 /* AI_API_ExplorerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AI_API_ExplorerUITests.swift; sourceTree = "<group>"; };
 		210E668A29CDEB42005219F1 /* AI_API_ExplorerUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AI_API_ExplorerUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		210E669729CDEFE3005219F1 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
+		210E669929CE2660005219F1 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +105,7 @@
 				210E667029CDEB42005219F1 /* Assets.xcassets */,
 				210E667229CDEB42005219F1 /* AI_API_Explorer.entitlements */,
 				210E667329CDEB42005219F1 /* Preview Content */,
+				210E669929CE2660005219F1 /* NetworkManager.swift */,
 			);
 			path = "AI-API-Explorer";
 			sourceTree = "<group>";
@@ -262,6 +265,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				210E669A29CE2660005219F1 /* NetworkManager.swift in Sources */,
 				210E666F29CDEB41005219F1 /* ContentView.swift in Sources */,
 				210E669829CDEFE3005219F1 /* DetailView.swift in Sources */,
 				210E666D29CDEB41005219F1 /* AI_API_ExplorerApp.swift in Sources */,
