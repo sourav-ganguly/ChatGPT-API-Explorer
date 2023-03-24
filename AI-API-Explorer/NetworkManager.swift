@@ -1,10 +1,3 @@
-//
-//  NetworkManager.swift
-//  AI-API-Explorer
-//
-//  Created by Sourav on 25/3/23.
-//
-
 import Foundation
 
 protocol NetworkEndpoint {
@@ -21,27 +14,29 @@ extension NetworkEndpoint {
     var baseURL: String {
         return "https://example.com/api/"
     }
+}
 
-    func makeRequest(completion: @escaping (Result<Response, Error>) -> Void) {
-        guard var components = URLComponents(string: baseURL + path) else {
+class NetworkManager<Endpoint: NetworkEndpoint> {
+    func makeRequest(endpoint: Endpoint, completion: @escaping (Result<Endpoint.Response, Error>) -> Void) {
+        guard var components = URLComponents(string: endpoint.baseURL + endpoint.path) else {
             let error = NSError(domain: "NetworkEndpoint", code: -1, userInfo: [NSLocalizedDescriptionKey: "Invalid URL"])
             completion(.failure(error))
             return
         }
-        if !body.isEmpty {
-            components.queryItems = body
+        if !endpoint.body.isEmpty {
+            components.queryItems = endpoint.body
         }
 
         var request = URLRequest(url: components.url!)
-        request.httpMethod = httpMethod
-        request.allHTTPHeaderFields = headers
+        request.httpMethod = endpoint.httpMethod
+        request.allHTTPHeaderFields = endpoint.headers
 
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             if let error = error {
                 completion(.failure(error))
             } else if let data = data {
                 do {
-                    let response = try JSONDecoder().decode(Response.self, from: data)
+                    let response = try JSONDecoder().decode(Endpoint.Response.self, from: data)
                     completion(.success(response))
                 } catch let decodingError {
                     completion(.failure(decodingError))
@@ -49,12 +44,6 @@ extension NetworkEndpoint {
             }
         }
         task.resume()
-    }
-}
-
-class NetworkManager<Endpoint: NetworkEndpoint> {
-    func request(endpoint: Endpoint, completion: @escaping (Result<Endpoint.Response, Error>) -> Void) {
-        endpoint.makeRequest(completion: completion)
     }
 }
 
