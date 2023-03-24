@@ -16,20 +16,18 @@ struct ContentView: View {
                 NavigationLink(destination: DetailView(item: item)) {
                     VStack(alignment: .leading, spacing: 8) {
                         Text(item)
-                            .font(.headline)
+                            .font(.system(size: 20, weight: .medium))
                             .foregroundColor(.primary)
-                        Text("Description of \(item)")
-                            .font(.subheadline)
-                            .foregroundColor(.secondary)
+                            .padding(.vertical, 4)
                     }
                     .padding(.vertical, 8)
-                    .padding(.horizontal, 16)
                 }
+                .padding(.vertical, 8)
+                .cornerRadius(10)
             }
             .navigationTitle("Items")
             .listStyle(.plain)
             .navigationBarTitleDisplayMode(.inline)
-            
         }
     }
 }
