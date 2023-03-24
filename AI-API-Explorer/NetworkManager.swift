@@ -10,12 +10,6 @@ protocol NetworkEndpoint {
     var headers: [String: String] { get }
 }
 
-extension NetworkEndpoint {
-    var baseURL: String {
-        return "https://example.com/api/"
-    }
-}
-
 class NetworkManager<Endpoint: NetworkEndpoint> {
     func makeRequest(endpoint: Endpoint, completion: @escaping (Result<Endpoint.Response, Error>) -> Void) {
         guard var components = URLComponents(string: endpoint.baseURL + endpoint.path) else {
@@ -52,6 +46,10 @@ enum UserEndpoint: NetworkEndpoint {
 
     case getUser(id: Int)
     case createUser(name: String, email: String)
+
+    var baseURL: String {
+        return "https://example.com/api/v1/"
+    }
 
     var path: String {
         switch self {
