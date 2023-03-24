@@ -14,6 +14,7 @@
 		210E667F29CDEB42005219F1 /* AI_API_ExplorerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210E667E29CDEB42005219F1 /* AI_API_ExplorerTests.swift */; };
 		210E668929CDEB42005219F1 /* AI_API_ExplorerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210E668829CDEB42005219F1 /* AI_API_ExplorerUITests.swift */; };
 		210E668B29CDEB42005219F1 /* AI_API_ExplorerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210E668A29CDEB42005219F1 /* AI_API_ExplorerUITestsLaunchTests.swift */; };
+		210E669829CDEFE3005219F1 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210E669729CDEFE3005219F1 /* DetailView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +46,7 @@
 		210E668429CDEB42005219F1 /* AI-API-ExplorerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "AI-API-ExplorerUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		210E668829CDEB42005219F1 /* AI_API_ExplorerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AI_API_ExplorerUITests.swift; sourceTree = "<group>"; };
 		210E668A29CDEB42005219F1 /* AI_API_ExplorerUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AI_API_ExplorerUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		210E669729CDEFE3005219F1 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +99,7 @@
 			children = (
 				210E666C29CDEB41005219F1 /* AI_API_ExplorerApp.swift */,
 				210E666E29CDEB41005219F1 /* ContentView.swift */,
+				210E669729CDEFE3005219F1 /* DetailView.swift */,
 				210E667029CDEB42005219F1 /* Assets.xcassets */,
 				210E667229CDEB42005219F1 /* AI_API_Explorer.entitlements */,
 				210E667329CDEB42005219F1 /* Preview Content */,
@@ -260,6 +263,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				210E666F29CDEB41005219F1 /* ContentView.swift in Sources */,
+				210E669829CDEFE3005219F1 /* DetailView.swift in Sources */,
 				210E666D29CDEB41005219F1 /* AI_API_ExplorerApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
