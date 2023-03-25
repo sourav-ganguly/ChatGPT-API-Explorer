@@ -13,7 +13,7 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             List(items, id: \.self) { item in
-                NavigationLink(destination: DetailView(item: item)) {
+                NavigationLink(destination: SearchAndDetail()) {
                     VStack(alignment: .leading, spacing: 8) {
                         Text(item)
                             .font(.system(size: 20, weight: .medium))
