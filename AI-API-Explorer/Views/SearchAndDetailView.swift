@@ -40,13 +40,20 @@ struct SearchBar: View {
         HStack {
             TextField("Search", text: $text)
                 .padding(.horizontal, 24)
-            Image(systemName: "magnifyingglass")
-                .foregroundColor(.gray)
-                .padding(.horizontal, 8)
+            Button(action: {
+                print("Search button tapped.")
+            }) {
+                Image(systemName: "magnifyingglass")
+                    .foregroundColor(.gray)
+                    .padding(.horizontal, 8)
+            }
         }
         .padding(8)
         .background(Color(.systemGray6))
         .cornerRadius(10)
         .padding(.horizontal, 16)
+    }
+
+    private func onSearchBarTap() {
     }
 }
