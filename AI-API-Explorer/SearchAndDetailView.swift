@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct SearchAndDetail: View {
+struct SearchAndDetailView: View {
     @State private var searchText = ""
 
     var body: some View {
@@ -15,10 +15,18 @@ struct SearchAndDetail: View {
             SearchBar(text: $searchText)
 
             Spacer()
+                .frame(height: 40)
 
             Text("Detail Label View")
-                .font(.headline)
+                .font(.title)
                 .foregroundColor(.gray)
+
+            Spacer()
+
+            Text("\(searchText) \(searchText) \(searchText) \(searchText) \(searchText) \(searchText) ")
+                .font(.headline)
+                .foregroundColor(.blue)
+                .padding()
 
             Spacer()
         }
