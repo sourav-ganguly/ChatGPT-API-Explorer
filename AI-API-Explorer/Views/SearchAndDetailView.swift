@@ -42,6 +42,7 @@ struct SearchBar: View {
                 .padding(.horizontal, 24)
             Button(action: {
                 print("Search button tapped.")
+                onSearchBarTap()
             }) {
                 Image(systemName: "magnifyingglass")
                     .foregroundColor(.gray)
@@ -55,5 +56,9 @@ struct SearchBar: View {
     }
 
     private func onSearchBarTap() {
+        let rep = TextCompletionRepository()
+        rep.getTextCompletion(text: "write about Dhaka") { result in
+            print(result)
+        }
     }
 }

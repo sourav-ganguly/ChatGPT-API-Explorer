@@ -1,90 +1,90 @@
+//
+//  NetworkManager.swift
+//  InterviewSampleProject
+//
+//  Created by Sourav on 9/3/23.
+//
+
 import Foundation
 
-protocol NetworkEndpoint {
-    associatedtype Response: Decodable
 
-    var baseURL: String { get }
-    var path: String { get }
-    var httpMethod: String { get }
-    var body: [URLQueryItem] { get }
-    var headers: [String: String] { get }
-}
+final class NetworkManager {
 
-class NetworkManager<Endpoint: NetworkEndpoint> {
-    func makeRequest(endpoint: Endpoint, completion: @escaping (Result<Endpoint.Response, Error>) -> Void) {
-        guard var components = URLComponents(string: endpoint.baseURL + endpoint.path) else {
-            let error = NSError(domain: "NetworkEndpoint", code: -1, userInfo: [NSLocalizedDescriptionKey: "Invalid URL"])
-            completion(.failure(error))
+    /// Builds the relevant URL components from the values specified
+    /// in the API.
+    private class func buildURL(endpoint: API) -> URLComponents {
+        var components = URLComponents()
+        components.scheme = endpoint.scheme.rawValue
+        components.host = endpoint.baseURL
+        components.path = endpoint.path
+//        components.queryItems = endpoint.parameters
+        return components
+    }
+
+    /// Executes the HTTP request and will attempt to decode the JSON
+    /// response into a Codable object.
+    /// - Parameters:
+    ///   - endpoint: the endpoint to make the HTTP request to
+    ///   - completion: the JSON response converted to the provided Codable
+    /// object when successful or a failure otherwise
+    class func request<T: Decodable>(endpoint: API,
+                                     completion: @escaping (Result<T, Error>)
+                                     -> Void) {
+        let components = buildURL(endpoint: endpoint)
+
+        guard let url = components.url else {
+            Log.error("URL creation error")
             return
         }
-        if !endpoint.body.isEmpty {
-            components.queryItems = endpoint.body
+
+        var urlRequest = URLRequest(url: url)
+        urlRequest.httpMethod = endpoint.method.rawValue
+
+        for (key, value) in endpoint.headerFields {
+            urlRequest.setValue(value, forHTTPHeaderField: key)
         }
 
-        var request = URLRequest(url: components.url!)
-        request.httpMethod = endpoint.httpMethod
-        request.allHTTPHeaderFields = endpoint.headers
+        do {
+            urlRequest.httpBody = try JSONSerialization.data(withJSONObject: endpoint.parameters, options: .prettyPrinted) // pass dictionary to data object and set it as request body
+        } catch let error {
+            print(error.localizedDescription)
+            completion(.failure(error))
+        }
 
-        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+
+        let session = URLSession(configuration: .default)
+
+        let dataTask = session.dataTask(with: urlRequest) { data, response, error in
             if let error = error {
                 completion(.failure(error))
-            } else if let data = data {
-                do {
-                    let response = try JSONDecoder().decode(Endpoint.Response.self, from: data)
-                    completion(.success(response))
-                } catch let decodingError {
-                    completion(.failure(decodingError))
-                }
+                Log.error("Unknown error", error)
+                return
+            }
+            guard response != nil, let data = data else {
+                return
+            }
+            if let responseObject = try? JSONDecoder().decode(T.self,
+                                                              from: data) {
+                completion(.success(responseObject))
+            } else {
+                let error = NSError(domain: "com.AryamanSharda",
+                                    code: 200,
+                                    userInfo: [
+                                        NSLocalizedDescriptionKey: "Failed"
+                                    ])
+                completion(.failure(error))
             }
         }
-        task.resume()
+        dataTask.resume()
     }
+
 }
 
-enum UserEndpoint: NetworkEndpoint {
-    typealias Response = User
+class Log {
+    class func error(_ info: String, _ error: Error) {
 
-    case getUser(id: Int)
-    case createUser(name: String, email: String)
-
-    var baseURL: String {
-        return "https://example.com/api/v1/"
     }
+    class func error(_ info: String) {
 
-    var path: String {
-        switch self {
-        case .getUser(let id):
-            return "users/\(id)"
-        case .createUser:
-            return "users"
-        }
     }
-
-    var httpMethod: String {
-        switch self {
-        case .getUser:
-            return "GET"
-        case .createUser:
-            return "POST"
-        }
-    }
-
-    var body: [URLQueryItem] {
-        switch self {
-        case .getUser:
-            return []
-        case .createUser(let name, let email):
-            return [URLQueryItem(name: "name", value: name), URLQueryItem(name: "email", value: email)]
-        }
-    }
-
-    var headers: [String: String] {
-        return ["Content-Type": "application/json"]
-    }
-}
-
-struct User: Decodable {
-    let id: Int
-    let name: String
-    let email: String
 }
