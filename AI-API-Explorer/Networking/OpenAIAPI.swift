@@ -44,7 +44,7 @@ enum OpenAIAPI: API {
     var headerFields: [String : String] {
         [
             "Content-Type": "application/json",
-            "Authorization": "Bearer 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"
+            "Authorization": "Bearer \(SecretConstants.openAISecret.rawValue)"
         ]
     }
     

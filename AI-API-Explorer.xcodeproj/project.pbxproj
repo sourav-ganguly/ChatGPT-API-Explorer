@@ -23,6 +23,7 @@
 		210E66B529D22A44005219F1 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210E66B029D22A44005219F1 /* NetworkManager.swift */; };
 		210E66B629D22A44005219F1 /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210E66B129D22A44005219F1 /* HTTPMethod.swift */; };
 		210E66B729D22A44005219F1 /* OpenAIAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210E66B229D22A44005219F1 /* OpenAIAPI.swift */; };
+		21160FA629D44FAA00816BE4 /* OpenAISecret.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21160FA529D44FAA00816BE4 /* OpenAISecret.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +64,7 @@
 		210E66B029D22A44005219F1 /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		210E66B129D22A44005219F1 /* HTTPMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
 		210E66B229D22A44005219F1 /* OpenAIAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenAIAPI.swift; sourceTree = "<group>"; };
+		21160FA529D44FAA00816BE4 /* OpenAISecret.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OpenAISecret.swift; path = ../../OpenAISecret.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +115,7 @@
 		210E666B29CDEB41005219F1 /* AI-API-Explorer */ = {
 			isa = PBXGroup;
 			children = (
+				21160FA529D44FAA00816BE4 /* OpenAISecret.swift */,
 				210E669F29D1DBE5005219F1 /* Model */,
 				210E669E29CF6A06005219F1 /* Networking */,
 				210E669D29CF69F8005219F1 /* Views */,
@@ -313,6 +316,7 @@
 				210E66B529D22A44005219F1 /* NetworkManager.swift in Sources */,
 				210E66A329D1DF07005219F1 /* TextCompletionRepository.swift in Sources */,
 				210E666F29CDEB41005219F1 /* ContentView.swift in Sources */,
+				21160FA629D44FAA00816BE4 /* OpenAISecret.swift in Sources */,
 				210E66A129D1DBF0005219F1 /* TextCompletion.swift in Sources */,
 				210E66B329D22A44005219F1 /* HTTPScheme.swift in Sources */,
 				210E669829CDEFE3005219F1 /* DetailView.swift in Sources */,

@@ -9,21 +9,18 @@ import SwiftUI
 
 struct SearchAndDetailView: View {
     @State private var searchText = ""
+    @State private var detailText = ""
 
     var body: some View {
         VStack {
-            SearchBar(text: $searchText)
+            SearchBar(text: $searchText, onSearchBarTap: onSearchBarTap)
 
             Spacer()
                 .frame(height: 40)
 
-            Text("Detail Label View")
-                .font(.title)
-                .foregroundColor(.gray)
-
             Spacer()
 
-            Text("\(searchText) \(searchText) \(searchText) \(searchText) \(searchText) \(searchText) ")
+            Text("\(detailText) ")
                 .font(.headline)
                 .foregroundColor(.blue)
                 .padding()
@@ -31,10 +28,25 @@ struct SearchAndDetailView: View {
             Spacer()
         }
     }
+
+    private func onSearchBarTap() {
+        let rep = TextCompletionRepository()
+        detailText = "Searching about \(searchText) ..."
+        rep.getTextCompletion(text: "write about \(searchText) within 100 words") { result in
+            print(result)
+            switch result {
+            case .success(let completionText):
+                detailText = completionText.choices.first?.text ?? "No completion text."
+            case .failure:
+                detailText = "API fetch failed."
+            }
+        }
+    }
 }
 
 struct SearchBar: View {
     @Binding var text: String
+    var onSearchBarTap: (() -> Void)
 
     var body: some View {
         HStack {
@@ -53,12 +65,5 @@ struct SearchBar: View {
         .background(Color(.systemGray6))
         .cornerRadius(10)
         .padding(.horizontal, 16)
-    }
-
-    private func onSearchBarTap() {
-        let rep = TextCompletionRepository()
-        rep.getTextCompletion(text: "write about Dhaka") { result in
-            print(result)
-        }
     }
 }
